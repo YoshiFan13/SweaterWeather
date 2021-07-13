@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>SweaterWeather</title>
+    <link rel="stylesheet" href="styles/common.css">
+    <link rel="stylesheet" href="styles/weather.css">
+    <link rel="stylesheet" href="styles/weather-icons.min.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon-precomposed" href="images/sw192.png">
+    <link rel="shortcut icon" href="images/sw192.png" sizes="192x192" />
+    <link href="images/splashes/iphone5_splash.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+    <link href="images/splashes/iphone6_splash.png" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+    <link href="images/splashes/iphoneplus_splash.png" media="(device-width: 621px) and (device-height: 1104px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" />
+    <link href="images/splashes/iphonex_splash.png" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" />
+    <link href="images/splashes/iphonexr_splash.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+    <link href="images/splashes/iphonexsmax_splash.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" />
+    <link href="images/splashes/ipad_splash.png" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+    <link href="images/splashes/ipadpro1_splash.png" media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+    <link href="images/splashes/ipadpro3_splash.png" media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+    <link href="images/splashes/ipadpro2_splash.png" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="scripts/common.js"></script>
+    <script type="text/javascript" src="scripts/fetch.js"></script>
+</head>
+
+<body>
+    <div class="info">
+        <!-- Top info -->
+        <div class="center">
+        <h1 class="city">Loading</h1>
+        <p class="condition">Please wait...</p>
+        <h2 class="degrees">--</h2>
+        </div>
+
+        <!-- Today -->
+        <table class="fullwidth mintemp" id="today">
+            <tr>
+                <td class="col-Day">--</td>
+                <td class="col-Condition">--</td>
+                <td class="col-Max">--</td>
+                <td class="col-Min">--</td>
+            </tr>
+        </table>
+
+        <br>
+
+        <!-- 24 hour forecast -->
+        <div class="twentyfour">
+        <table>
+            <tr class="hour"></tr>
+            <tr class="icon"></tr>
+            <tr class="temperature"></tr>
+        </table>
+        </div>
+
+        <br>
+
+        <!-- 7 day forecast -->
+        <table class="fullwidth mintemp seven">
+        </table>
+
+        <br>
+
+        <!-- Additional details -->
+        <table class="fullwidth details">
+            <tr>
+                <td>SUNRISE<br><info id='sunrise'>--</info></td>
+                <td>SUNSET<br><info id='sunset'>--</info></td>
+            </tr>
+            <tr>
+                <td>CHANCE OF RAIN<br><info id='chanceOfRain'>--</info></td>
+                <td>HUMIDITY<br><info id='humidity'>--</info></td>
+            </tr>
+            <tr>
+                <td>WIND<br><info id='wind'>--</info></td>
+                <td>FEELS LIKE<br><info id='feelsLike'>--</info></td>
+            </tr>
+            <tr>
+                <td>PRECIPITATION<br><info id='precipitation'>--</info></td>
+                <td>PRESSURE<br><info id='pressure'>--</info></td>
+            </tr>
+            <tr>
+                <td>VISIBILITY<br><info id='visibility'>--</info></td>
+                <td>UV INDEX<br><info id='uvIndex'>--</info></td>
+            </tr>
+        </table>
+
+        <div class="center footer">Last updated: <info id=lastUpdate>--:--</info></div>
+
+        <div class="bottomright" onclick="location.replace('./settings.html');">≡</div>
+        <div class="bottomleft" onclick="fullUpdate(localStorage.getItem('api'), localStorage.getItem('units'));">⟳</div>
+    </div>
+</body>
+
+</html>

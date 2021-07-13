@@ -1,0 +1,14 @@
+{
+    "name": "SweaterWeather",
+    "display": "standalone",
+    "background_color": "#000000",
+    "scope": "/",
+    "start_url": "/",
+    "icons": [
+        {
+            "src": "images/sw512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
