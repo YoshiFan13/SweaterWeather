@@ -30,7 +30,7 @@ $('form').on('submit', function(event) {
     let anyErrors = false;
     if(!api && !localStorage.getItem('api').length) {errors += "API key missing!\n"; anyErrors = true;}
     if(!loc && !localStorage.getItem('api').length) {errors += "Location is missing!\n"; anyErrors = true;}
-    if(overlay < 5 || overlay > 95) {errors += "Invalid value for overlay opacity. Input range: 5 - 95%\n"; anyErrors = true;}
+    if(overlay < 0 || overlay > 95) {errors += "Invalid value for overlay opacity. Input range: 0 - 95%\n"; anyErrors = true;}
     if(bgMode === "image" && !$('input[type=url]').val()) {errors += "No image URL was set. Enter a URL in the field or choose another option."; anyErrors = true;}
     if(bgMode === "file" && !localStorage.getItem('imageFile') && !$('input[type=file]')[0].files[0]) 
     {errors += "No image was uploaded or stored. Upload an image or choose another option."; anyErrors = true;}
