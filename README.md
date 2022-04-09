@@ -37,7 +37,7 @@ A simple weather Web app for a college project, tailored to my desires.
 
 ## Future improvements
 - [ ] Improve readme (especially add images)
-- [ ] Adjust media queries for optimal tablet layout
+- [x] Adjust media queries for optimal tablet layout
 - [ ] Add light theme (with option to choose theme)
 - [ ] Add more background modes (Unsplash Source)
 - [ ] Add location-based weather
