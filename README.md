@@ -26,7 +26,7 @@ A simple weather Web app for a college project, tailored to my desires.
 
 ## Getting started
 0. Sign up for OpenWeatherMap's free tier and get your API key [here](https://home.openweathermap.org/users/sign_up)
-1. With your API key on hand, go to the SweaterWeather page
+1. With your API key on hand, go to the SweaterWeather page  
 (You can also host it yourself by downloading or cloning the repo and then starting a local server containing the files)
 2. Click/tap OK on the alert that says you're using the app for the first time  
 (Note for iOS: If you want to add SweaterWeather to your home screen, you can do it right after the alert appears and you won't have to set it up a second time) 
