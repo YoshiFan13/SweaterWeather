@@ -54,7 +54,7 @@ $('form').on('submit', function(event) {
 
 function goBack() {
     // TODO: there MUST be a better way to make sure we don't leave before encoding ends (for Safari)
-    setTimeout(function(){ location.replace('../'); }, 100);
+    setTimeout(function(){ location.replace('.'); }, 100);
   }
 
 function encodeImage() {
