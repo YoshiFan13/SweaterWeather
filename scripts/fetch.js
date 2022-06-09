@@ -1,57 +1,63 @@
-async function getWeather(loc, unit, api) {
-    let weather = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${loc}&appid=${api}&units=${unit}`).then(response => response.json());
+function getWeather(loc, unit, api) {
+    return new Promise((resolve, reject) => {
+        fetch(`https://api.openweathermap.org/data/2.5/weather?q=${loc}&appid=${api}&units=${unit}`).then(response => response.json()).then(weather => {
+            if(weather.cod == "404") throw alert("City not found. Make sure your spelling is correct. To make your search more precise, add a comma and the two letter country code after the name.")
 
-    if(weather.cod == "404") throw alert("City not found. Make sure your spelling is correct. To make your search more precise, add a comma and the two letter country code after the name.")
-
-    if(localStorage.getItem('units') === "metric") { windMult = 3.6; precMult = 1; presMult = 1; visMult = 1; }
-    else { windMult = 1; precMult = 0.39370; presMult = 0.02953; visMult = 0.62137 }
-
-    localStorage.setItem('tempCurrent', Math.round(weather.main.temp));
-    localStorage.setItem('feelsLike', Math.round(weather.main.feels_like));
-    localStorage.setItem('condition', weather.weather[0].description.replace(/(^\w|\s\w)/g, m => m.toUpperCase())); // Thanks to https://stackoverflow.com/a/60610887
-    localStorage.setItem('iconID', weather.weather[0].id);
-    localStorage.setItem('humidity', weather.main.humidity);
-    localStorage.setItem('pressure', parseFloat((weather.main.pressure*presMult).toFixed(2)));
-    localStorage.setItem('visibility', Math.round(weather.visibility/1000*visMult));
-    localStorage.setItem('windDir', degToCard(weather.wind.deg));
-    localStorage.setItem('windSpeed', Math.round(weather.wind.speed*windMult));
-    localStorage.setItem('lat', weather.coord.lat);
-    localStorage.setItem('lon', weather.coord.lon);
-    localStorage.setItem('city', weather.sys.country === 'RO' ? weather.name.replace("ş", "ș").replace("Ş", "Ș")
-    .replace("ţ", "ț").replace("Ţ", "Ț") : weather.name); // API returns Romanian names with cedilla so I'm fixing them
-    localStorage.setItem('sunrise', weather.sys.sunrise + weather.timezone);
-    localStorage.setItem('sunset', weather.sys.sunset + weather.timezone); // Sunrise/sunset should be displayed as the location's time, with formatUnixUTC
-    localStorage.setItem('updatedAt', weather.dt); // Should be displayed as your local time, with formatUnix
+            if(localStorage.getItem('units') === "metric") { windMult = 3.6; precMult = 1; presMult = 1; visMult = 1; }
+            else { windMult = 1; precMult = 0.39370; presMult = 0.02953; visMult = 0.62137 }
+        
+            localStorage.setItem('tempCurrent', Math.round(weather.main.temp));
+            localStorage.setItem('feelsLike', Math.round(weather.main.feels_like));
+            localStorage.setItem('condition', weather.weather[0].description.replace(/(^\w|\s\w)/g, m => m.toUpperCase())); // Thanks to https://stackoverflow.com/a/60610887
+            localStorage.setItem('iconID', weather.weather[0].id);
+            localStorage.setItem('humidity', weather.main.humidity);
+            localStorage.setItem('pressure', parseFloat((weather.main.pressure*presMult).toFixed(2)));
+            localStorage.setItem('visibility', Math.round(weather.visibility/1000*visMult));
+            localStorage.setItem('windDir', degToCard(weather.wind.deg));
+            localStorage.setItem('windSpeed', Math.round(weather.wind.speed*windMult));
+            localStorage.setItem('lat', weather.coord.lat);
+            localStorage.setItem('lon', weather.coord.lon);
+            localStorage.setItem('city', weather.sys.country === 'RO' ? weather.name.replace("ş", "ș").replace("Ş", "Ș")
+            .replace("ţ", "ț").replace("Ţ", "Ț") : weather.name); // API returns Romanian names with cedilla so I'm fixing them
+            localStorage.setItem('sunrise', weather.sys.sunrise + weather.timezone);
+            localStorage.setItem('sunset', weather.sys.sunset + weather.timezone); // Sunrise/sunset should be displayed as the location's time, with formatUnixUTC
+            localStorage.setItem('updatedAt', weather.dt); // Should be displayed as your local time, with formatUnix
+            resolve();
+        })
+    });
 }
 
-async function getForecast(lat, lon, unit, api) {
-    let forecast = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely&appid=${api}&units=${unit}`).then(response => response.json());
-
-    let dailyDays = [], dailyHighs = [], dailyLows = [], dailyConditions = []; 
-    for (let i = 0; i < forecast.daily.length; i++) {
-        dailyDays.push(forecast.daily[i].dt + forecast.timezone_offset); // formatUnixUTC
-        dailyHighs.push(Math.round(forecast.daily[i].temp.max));
-        dailyLows.push(Math.round(forecast.daily[i].temp.min));
-        dailyConditions.push(Math.round(forecast.daily[i].weather[0].id));
-    }
-
-    let hourlyHours = [], hourlyTemps = [], hourlyConditions = [];
-    for(let i = 0; i < 24; i++) {
-        hourlyHours.push(forecast.hourly[i].dt + forecast.timezone_offset); //formatUnixUTC
-        hourlyTemps.push(Math.round(forecast.hourly[i].temp));
-        hourlyConditions.push(Math.round(forecast.hourly[i].weather[0].id));
-    }
-
-    localStorage.setItem('uvIndex', Math.round(forecast.current.uvi));
-    localStorage.setItem('chanceOfRain', parseFloat((forecast.hourly[0].pop*100).toFixed(2)));
-    localStorage.setItem('precipitation', parseFloat((forecast.daily[0].rain/10*precMult || 0).toFixed(1)));
-    localStorage.setItem('dailyDays', JSON.stringify(dailyDays));
-    localStorage.setItem('dailyHighs', JSON.stringify(dailyHighs));
-    localStorage.setItem('dailyLows', JSON.stringify(dailyLows));
-    localStorage.setItem('dailyConditions', JSON.stringify(dailyConditions));
-    localStorage.setItem('hourlyHours', JSON.stringify(hourlyHours));
-    localStorage.setItem('hourlyTemps', JSON.stringify(hourlyTemps));
-    localStorage.setItem('hourlyConditions', JSON.stringify(hourlyConditions));
+function getForecast(lat, lon, unit, api) {
+    return new Promise((resolve, reject) => {
+        fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely&appid=${api}&units=${unit}`).then(response => response.json()).then(forecast => {
+            let dailyDays = [], dailyHighs = [], dailyLows = [], dailyConditions = []; 
+            for (let i = 0; i < forecast.daily.length; i++) {
+                dailyDays.push(forecast.daily[i].dt + forecast.timezone_offset); // formatUnixUTC
+                dailyHighs.push(Math.round(forecast.daily[i].temp.max));
+                dailyLows.push(Math.round(forecast.daily[i].temp.min));
+                dailyConditions.push(Math.round(forecast.daily[i].weather[0].id));
+            }
+        
+            let hourlyHours = [], hourlyTemps = [], hourlyConditions = [];
+            for(let i = 0; i < 24; i++) {
+                hourlyHours.push(forecast.hourly[i].dt + forecast.timezone_offset); //formatUnixUTC
+                hourlyTemps.push(Math.round(forecast.hourly[i].temp));
+                hourlyConditions.push(Math.round(forecast.hourly[i].weather[0].id));
+            }
+        
+            localStorage.setItem('uvIndex', Math.round(forecast.current.uvi));
+            localStorage.setItem('chanceOfRain', parseFloat((forecast.hourly[0].pop*100).toFixed(2)));
+            localStorage.setItem('precipitation', parseFloat((forecast.daily[0].rain/10*precMult || 0).toFixed(1)));
+            localStorage.setItem('dailyDays', JSON.stringify(dailyDays));
+            localStorage.setItem('dailyHighs', JSON.stringify(dailyHighs));
+            localStorage.setItem('dailyLows', JSON.stringify(dailyLows));
+            localStorage.setItem('dailyConditions', JSON.stringify(dailyConditions));
+            localStorage.setItem('hourlyHours', JSON.stringify(hourlyHours));
+            localStorage.setItem('hourlyTemps', JSON.stringify(hourlyTemps));
+            localStorage.setItem('hourlyConditions', JSON.stringify(hourlyConditions));
+            resolve();
+        })
+    });
 }
 
 function updateStats() {
@@ -139,11 +145,10 @@ function formatUTCHour(timestamp) {
     return hours.substr(-2);
 }
 
-async function fullUpdate(api, units) {
-    await getWeather(localStorage.getItem('location'), units, api);
-    await getForecast(localStorage.getItem('lat'), localStorage.getItem('lon'), units, api);
-    updateStats();
-    changeBackground();
+function fullUpdate(api, units) {
+    getWeather(localStorage.getItem('location'), units, api)
+    .then(() => getForecast(localStorage.getItem('lat'), localStorage.getItem('lon'), units, api))
+    .then(() => {updateStats(); changeBackground();});
 }
 
 function noSettings() {
