@@ -2,7 +2,6 @@ function getWeather(loc, unit, api) {
     return new Promise((resolve, reject) => {
         fetch(`https://api.openweathermap.org/data/2.5/weather?q=${loc}&appid=${api}&units=${unit}`).then(response => response.json()).then(weather => {
             if(weather.cod == "404") throw alert("City not found. Make sure your spelling is correct. To make your search more precise, add a comma and the two letter country code after the name.")
-            if(weather.cod == "429") throw alert("You have exceeded the number of requests allowed by the OpenWeatherMap API. Come again another day. (Free API allows for 1000 requests per day)");
             if(localStorage.getItem('units') === "metric") { windMult = 3.6; precMult = 1; presMult = 1; visMult = 1; }
             else { windMult = 1; precMult = 0.39370; presMult = 0.02953; visMult = 0.62137 }
         
@@ -30,6 +29,7 @@ function getWeather(loc, unit, api) {
 function getForecast(lat, lon, unit, api) {
     return new Promise((resolve, reject) => {
         fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely&appid=${api}&units=${unit}`).then(response => response.json()).then(forecast => {
+            if(forecast.cod == "429") throw alert("You have exceeded the number of requests allowed by the OpenWeatherMap API. Come again another day. (Free API allows for 1000 requests per day)");
             let dailyDays = [], dailyHighs = [], dailyLows = [], dailyConditions = []; 
             for (let i = 0; i < forecast.daily.length; i++) {
                 dailyDays.push(forecast.daily[i].dt + forecast.timezone_offset); // formatUnixUTC
