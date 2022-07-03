@@ -89,3 +89,6 @@ function factoryReset() {
     localStorage.setItem('width', Math.floor(window.screen.width * window.devicePixelRatio));
     localStorage.setItem('height', Math.floor(window.screen.height * window.devicePixelRatio));
 }
+
+// Don't panic! I only need this to check for some legacy OS X versions :)
+let doc = document.documentElement; if(/X 10[._][4-9]/.test(navigator.userAgent)) doc.setAttribute("id","legacyMac");

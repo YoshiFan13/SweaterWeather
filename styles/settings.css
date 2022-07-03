@@ -34,6 +34,10 @@ input:not([type=file]) {
     font-family: -apple-system, BlinkMacSystemFont, 'Roboto', 'Open Sans', 'Segoe UI', 'Helvetica Neue', sans-serif;
 }
 
+html#legacyMac input:not([type=file]) {
+  font-family: 'Helvetica', 'Roboto', 'Open Sans', 'Segoe UI', 'Helvetica Neue', sans-serif;
+}
+
 input:not([type=file]):focus {
     background-color: #ffffff40;
     border: none;
