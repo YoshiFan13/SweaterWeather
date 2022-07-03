@@ -1,6 +1,7 @@
 function getWeather(loc, unit, api) {
     return new Promise((resolve, reject) => {
         fetch(`https://api.openweathermap.org/data/2.5/weather?q=${loc}&appid=${api}&units=${unit}`).then(response => response.json()).then(weather => {
+            if(weather.cod == "401") throw alert("Invalid API key.")
             if(weather.cod == "404") throw alert("City not found. Make sure your spelling is correct. To make your search more precise, add a comma and the two letter country code after the name.")
             if(localStorage.getItem('units') === "metric") { windMult = 3.6; precMult = 1; presMult = 1; visMult = 1; }
             else { windMult = 1; precMult = 0.39370; presMult = 0.02953; visMult = 0.62137 }
