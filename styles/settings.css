@@ -22,7 +22,7 @@ input[id=location] {
     padding-left: 36px;
 }
 
-input:not([type=file]) {
+input:not([type=file]):not([type=radio]) {
     width: 100%;
     box-sizing: border-box;
     border: none;
@@ -34,11 +34,11 @@ input:not([type=file]) {
     font-family: -apple-system, BlinkMacSystemFont, 'Roboto', 'Open Sans', 'Segoe UI', 'Helvetica Neue', sans-serif;
 }
 
-html#legacyMac input:not([type=file]) {
+html#legacyMac input:not([type=file]):not([type=radio]) {
   font-family: 'Helvetica', 'Roboto', 'Open Sans', 'Segoe UI', 'Helvetica Neue', sans-serif;
 }
 
-input:not([type=file]):focus {
+input:not([type=file]):not([type=radio]):focus {
     background-color: #ffffff40;
     border: none;
     border-bottom: 4px solid transparent;
