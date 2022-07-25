@@ -22,7 +22,7 @@ input[id=location] {
     padding-left: 36px;
 }
 
-input:not([type=file]):not([type=radio]) {
+input:not([type=file]):not([type=radio]):not([type=checkbox]) {
     width: 100%;
     box-sizing: border-box;
     border: none;
@@ -110,11 +110,29 @@ input:not([type=file]):not([type=radio]):focus {
 }
   
   /* Style the indicator (dot/circle) */
-  .container .checkmark:after {
+  .container:not(.check) .checkmark:after {
        top: 5px;
       left: 5px;
       width: 6px;
       height: 6px;
       border-radius: 50%;
       background: white;
+}
+
+ /* Create a custom checkbox */
+ .checkmark.check {
+  border-radius: 25% !important;
+}
+
+/* Style the checkmark/indicator */
+.container.check .checkmark.check:after {
+  left: 4.5px;
+  top: 1px;
+  width: 4px;
+  height: 8px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
 }

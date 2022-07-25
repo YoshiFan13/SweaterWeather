@@ -4,6 +4,7 @@ $(document).ready(function(){
     $('input#location').val(localStorage.getItem('location'))
     $('input#api').val(localStorage.getItem('api'))
     $('input:radio[name="units"]').filter(`[value="${localStorage.getItem('units')}"]`).attr('checked', true);
+    if(localStorage.getItem('reload') == "on") $('input:checkbox[name="reload"]').attr('checked', true);
     $('input:radio[name="background"]').filter(`[value="${localStorage.getItem('bgMode')}"]`).attr('checked', true);
     $('input[type=url]').val(localStorage.getItem('imageURL'));
     $('input[name=overlay]').val(localStorage.getItem('overlay'));
@@ -17,6 +18,7 @@ $('form').on('submit', function(event) {
 
     let loc = $('input#location').val();
     let units = $('input[name=units]:checked').val();
+    let reload = $('input[name=reload]:checked').val() || null;
     let bgMode = $('input[name=background]:checked').val();
     let api = $('input#api').val();
     let imageURL = $('input[type=url]').val();
@@ -38,6 +40,7 @@ $('form').on('submit', function(event) {
 
     // Add values to LocalStorage
     localStorage.setItem('units', units);
+    localStorage.setItem('reload', reload);
     localStorage.setItem('bgMode', bgMode);
     localStorage.setItem('overlay', overlay);
     localStorage.setItem('width', width);

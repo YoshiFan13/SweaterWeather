@@ -162,3 +162,5 @@ $(document).ready(function() {
     if (!(localStorage.getItem('location'))) noSettings();
     fullUpdate(localStorage.getItem('api'), localStorage.getItem('units'));
 });
+
+if(localStorage.getItem('reload') == "on") window.addEventListener('focus', function() {fullUpdate(localStorage.getItem('api'), localStorage.getItem('units'))});
