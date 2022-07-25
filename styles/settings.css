@@ -34,11 +34,11 @@ input:not([type=file]):not([type=radio]):not([type=checkbox]) {
     font-family: -apple-system, BlinkMacSystemFont, 'Roboto', 'Open Sans', 'Segoe UI', 'Helvetica Neue', sans-serif;
 }
 
-html#legacyMac input:not([type=file]):not([type=radio]) {
+html#legacyMac input:not([type=file]):not([type=radio]):not([type=checkbox]) {
   font-family: 'Helvetica', 'Roboto', 'Open Sans', 'Segoe UI', 'Helvetica Neue', sans-serif;
 }
 
-input:not([type=file]):not([type=radio]):focus {
+input:not([type=file]):not([type=radio]):not([type=checkbox]):focus {
     background-color: #ffffff40;
     border: none;
     border-bottom: 4px solid transparent;
