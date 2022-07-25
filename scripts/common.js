@@ -62,19 +62,19 @@ function changeBackground() {
     let condition = localStorage.getItem('iconID');
     switch (localStorage.getItem('bgMode')) {
         case ("gradients"):
-            $('body').css('background-image', `${gradientBackgrounds(condition)}, ${overlay}`);
+            $('body').css('background-image', `${overlay}, ${gradientBackgrounds(condition)}`);
             break;
         case ("unsplash"):
-            $('body').css('background-image', `url("https://source.unsplash.com/${unsplashBackgrounds(condition)}/${resolution}"), ${overlay}`);
+            $('body').css('background-image', `${overlay}, url("https://source.unsplash.com/${unsplashBackgrounds(condition)}/${resolution}")`);
             break;
         case ("featured"):
-            $('body').css('background-image', `url("https://source.unsplash.com/featured/${resolution}?v=${new Date().getTime()}"), ${overlay}`);
+            $('body').css('background-image', `${overlay}, url("https://source.unsplash.com/featured/${resolution}?v=${new Date().getTime()}")`);
             break;
         case ("image"):
-            $('body').css('background-image', `url("${localStorage.getItem('imageURL')}"), ${overlay}`);
+            $('body').css('background-image', `${overlay}, url("${localStorage.getItem('imageURL')}")`);
             break;
         case ("file"):
-            $('body').css('background-image', `url("${localStorage.getItem('imageFile')}"), ${overlay}`);
+            $('body').css('background-image', `${overlay}, url("${localStorage.getItem('imageFile')}")`);
             break;
         default:
             break;
