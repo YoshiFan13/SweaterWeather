@@ -40,7 +40,7 @@ function getForecast(lat, lon, unit, api) {
             }
         
             let hourlyHours = [], hourlyTemps = [], hourlyConditions = [];
-            for(let i = 0; i < 24; i++) {
+            for(let i = 0; i < (localStorage.getItem('extendHour') == "on" ? 48 : 24); i++) {
                 hourlyHours.push(forecast.hourly[i].dt + forecast.timezone_offset); //formatUnixUTC
                 hourlyTemps.push(Math.round(forecast.hourly[i].temp));
                 hourlyConditions.push(Math.round(forecast.hourly[i].weather[0].id));

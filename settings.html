@@ -57,6 +57,10 @@
                 <span class="checkmark check"></span></label>
                 <div class="footer">Note: This behavior is similar to the iOS Weather app, where coming back into the app automatically updates the weather. It also applies when coming back into the browser or PWA on mobile.</div>
 
+                <label class="container check" for="extendhour">Show hourly stats up to 48 hours (instead of 24)
+                <input type="checkbox" id="extendhour" name="extendhour">
+                <span class="checkmark check"></span></label><br>
+
                 <label for="background">Background image</label><br>
 
                 <label class="container" for="bgNone">None (Black)
@@ -67,13 +71,43 @@
                 <input type="radio" id="bgGradients" name="background" value="gradients">
                 <span class="checkmark"></span></label>
 
-                <label class="container" for="bgUnsplash">Unsplash (Weather Photos)
+                <label class="container" for="bgUnsplash">Unsplash (YoshiFan's Weather Photos)
                 <input type="radio" id="bgUnsplash" name="background" value="unsplash">
+                <span class="checkmark"></span></label>
+
+                <label class="container" for="bgTWTZ">Unsplash (thewaytozion's Weather Photos)
+                <input type="radio" id="bgTWTZ" name="background" value="twtz">
                 <span class="checkmark"></span></label>
 
                 <label class="container" for="bgFeatured">Unsplash (Featured Photos)
                 <input type="radio" id="bgFeatured" name="background" value="featured">
                 <span class="checkmark"></span></label>
+
+                <label class="container" for="bgRandom">Unsplash (Random Photos)
+                <input type="radio" id="bgRandom" name="background" value="random">
+                <span class="checkmark"></span></label><br>
+
+                <label class="container" for="bgUser">Unsplash (User's Photos)
+                <input type="radio" id="bgUser" name="background" value="user">
+                <span class="checkmark"></span></label>
+
+                <label class="container" for="bgUserLikes">Unsplash (User's Likes)
+                <input type="radio" id="bgUserLikes" name="background" value="userlikes">
+                <span class="checkmark"></span></label>
+
+                <label class="container" for="bgCollection">Unsplash (Collection)
+                <input type="radio" id="bgCollection" name="background" value="collection">
+                <span class="checkmark"></span></label>
+
+                <label class="container" for="bgSearch">Unsplash (Search Terms)
+                <input type="radio" id="bgSearch" name="background" value="search">
+                <span class="checkmark"></span></label>
+
+                <label class="container" for="bgSearchFeatured">Unsplash (Featured Search)
+                <input type="radio" id="bgSearchFeatured" name="background" value="searchfeatured">
+                <span class="checkmark"></span></label>
+
+                <input type="text" id="unsplash" name="unsplash" placeholder="trapnation OR 190727 OR nature,water"><br><br>
 
                 <label class="container" for="bgImage">Custom (Image URL)
                 <input type="radio" id="bgImage" name="background" value="image">

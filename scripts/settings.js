@@ -5,7 +5,9 @@ $(document).ready(function(){
     $('input#api').val(localStorage.getItem('api'))
     $('input:radio[name="units"]').filter(`[value="${localStorage.getItem('units')}"]`).attr('checked', true);
     if(localStorage.getItem('reload') == "on") $('input:checkbox[name="reload"]').attr('checked', true);
+    if(localStorage.getItem('extendHour') == "on") $('input:checkbox[name="extendhour"]').attr('checked', true);
     $('input:radio[name="background"]').filter(`[value="${localStorage.getItem('bgMode')}"]`).attr('checked', true);
+    $('input#unsplash').val(localStorage.getItem('unsplash'));
     $('input[type=url]').val(localStorage.getItem('imageURL'));
     $('input[name=overlay]').val(localStorage.getItem('overlay'));
     $('input[name=width]').val(localStorage.getItem('width'));
@@ -19,7 +21,9 @@ $('form').on('submit', function(event) {
     let loc = $('input#location').val();
     let units = $('input[name=units]:checked').val();
     let reload = $('input[name=reload]:checked').val() || null;
+    let extendHour = $('input[name=extendhour]:checked').val() || null;
     let bgMode = $('input[name=background]:checked').val();
+    let unsplash = $('input#unsplash').val();
     let api = $('input#api').val();
     let imageURL = $('input[type=url]').val();
     let overlay = $('input[name=overlay]').val();
@@ -34,6 +38,8 @@ $('form').on('submit', function(event) {
     if(!loc && !localStorage.getItem('api').length) {errors += "Location is missing!\n"; anyErrors = true;}
     if(overlay < 0 || overlay > 95) {errors += "Invalid value for overlay opacity. Input range: 0 - 95%\n"; anyErrors = true;}
     if(bgMode === "image" && !$('input[type=url]').val()) {errors += "No image URL was set. Enter a URL in the field or choose another option."; anyErrors = true;}
+    if(["user", "userlikes", "collection", "search", "searchfeatured"].indexOf(bgMode) > -1 && !$('input#unsplash').val()) 
+    {errors += "No query was entered for Unsplash searching. Enter a query or choose another option."; anyErrors = true;} 
     if(bgMode === "file" && !localStorage.getItem('imageFile') && !$('input[type=file]')[0].files[0]) 
     {errors += "No image was uploaded or stored. Upload an image or choose another option."; anyErrors = true;}
     if(anyErrors) return alert(errors)
@@ -41,7 +47,9 @@ $('form').on('submit', function(event) {
     // Add values to LocalStorage
     localStorage.setItem('units', units);
     localStorage.setItem('reload', reload);
+    localStorage.setItem('extendHour', extendHour);
     localStorage.setItem('bgMode', bgMode);
+    localStorage.setItem('unsplash', unsplash);
     localStorage.setItem('overlay', overlay);
     localStorage.setItem('width', width);
     localStorage.setItem('height', height);
