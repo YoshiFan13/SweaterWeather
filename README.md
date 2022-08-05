@@ -7,7 +7,7 @@ A simple weather Web app for a college project, tailored to my desires.
 * Extra info such as sunrise/sunset, wind speed/direction...
 * Choose between metric and imperial units
 * Refresh info without reloading the entire app
-* Supports iOS 11+ (or any major browser version since ~2018)
+* Supports iOS 10.3+ (or any major browser version since ~2016)
 * Different background modes:
     * No background (black background)
     * Gradients
@@ -15,6 +15,7 @@ A simple weather Web app for a college project, tailored to my desires.
     * Featured photos from Unsplash
     * Custom image URL
     * Custom image upload (stored in LocalStorage)
+    * And more...
 
 ## What it uses
 * HTML5 + CSS3
@@ -37,12 +38,12 @@ A simple weather Web app for a college project, tailored to my desires.
 
 ## Future improvements
 - [ ] Improve readme (especially add images)
-- [x] Adjust media queries for optimal tablet layout
+- [x] ~~Adjust media queries for optimal tablet layout~~
 - [ ] Add light theme (with option to choose theme)
-- [ ] Add more background modes (Unsplash Source)
+- [x] ~~Add more background modes (Unsplash Source)~~
 - [ ] Add location-based weather
-- [ ] Fix compatibility with older Safari/iOS/WebKit/browser versions (supports iOS 11+ in current state)
-- [ ] Fix favicon in (some) browsers
+- [x] ~~Fix compatibility with older Safari/iOS/WebKit/browser versions~~ (I went as much as possible without major rewriting)
+- [x] ~~Fix favicon in (some) browsers~~ (I tried)
 - [ ] Add an easter egg?!
 
 # Feel free to contribute however you can!
