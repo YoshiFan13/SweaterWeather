@@ -161,4 +161,8 @@ function factoryReset() {
 }
 
 // Don't panic! I only need this to check for some legacy OS X versions :)
-let doc = document.documentElement; if(/X 10[._][4-9]/.test(navigator.userAgent)) doc.setAttribute("id","legacyMac");
+function isSorbet() {
+    return (/iPad; CPU OS 11_4/.test(navigator.userAgent)) && !((navigator.maxTouchPoints > 0) || ('ontouchstart' in window))
+}
+
+if(/(X 10[._][4-9])|(PPC Mac OS X 10_11)/.test(navigator.userAgent) || isSorbet()) document.documentElement.setAttribute("id","legacyMac");
