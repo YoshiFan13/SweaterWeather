@@ -56,6 +56,7 @@ function getForecast(lat, lon, unit, api) {
             localStorage.setItem('hourlyHours', JSON.stringify(hourlyHours));
             localStorage.setItem('hourlyTemps', JSON.stringify(hourlyTemps));
             localStorage.setItem('hourlyConditions', JSON.stringify(hourlyConditions));
+            localStorage.setItem('offset', forecast.timezone_offset)
             resolve();
         })
     });
@@ -64,7 +65,7 @@ function getForecast(lat, lon, unit, api) {
 function updateStats() {
     // Top elements
     $(".city").html(`${localStorage.getItem('city')}`);
-    $(".condition").html(`${localStorage.getItem('condition')} <i class="wi wi-owm-${localStorage.getItem('iconID')}"></i>`);
+    $(".condition").html(`${localStorage.getItem('condition')} <i class="wi wi-owm-${dayNight(+localStorage.getItem('updatedAt') + +localStorage.getItem('offset'), localStorage.getItem('sunrise'), localStorage.getItem('sunset'))}-${localStorage.getItem('iconID')}"></i>`);
     $(".degrees").html(`${localStorage.getItem('tempCurrent')}°`);
 
     // Middle elements
@@ -88,7 +89,7 @@ function updateStats() {
 
     for(let i = 0; i < hours.length; i++) {
         $(".twentyfour table .hour").append(`<td>${formatUTCHour(hours[i])}</td>`);
-        $(".twentyfour table .icon").append(`<td><i class="wi wi-owm-${hourlyConditions[i]}"></td>`);
+        $(".twentyfour table .icon").append(`<td><i class="wi wi-owm-${dayNight(hours[i], localStorage.getItem('sunrise'), localStorage.getItem('sunset'))}-${hourlyConditions[i]}"></td>`);
         $(".twentyfour table .temperature").append(`<td>${temps[i]}°</td>`);
     }
 
@@ -144,6 +145,11 @@ function formatUTCHour(timestamp) {
     let date = new Date(timestamp * 1000);
     let hours = `0${date.getUTCHours()}`;
     return hours.substr(-2);
+}
+
+function dayNight(time, sunrise, sunset) {
+    time %= 86400; sunrise %= 86400; sunset %= 86400;
+    if(time >= sunrise && time <= sunset) return "day"; else return "night";
 }
 
 function fullUpdate(api, units) {
