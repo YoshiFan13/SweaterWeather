@@ -3,7 +3,7 @@ A simple weather Web app for a college project, tailored to my desires.
 
 ## Features
 * Design based on Apple's Weather app (pre-iOS 15, mainly iOS 11)
-* 24 hour and 7 day forecasts
+* 24/48 hour and 7 day forecasts
 * Extra info such as sunrise/sunset, wind speed/direction...
 * Choose between metric and imperial units
 * Refresh info without reloading the entire app
@@ -38,12 +38,13 @@ A simple weather Web app for a college project, tailored to my desires.
 
 ## Future improvements
 - [ ] Improve readme (especially add images)
-- [x] ~~Adjust media queries for optimal tablet layout~~
 - [ ] Add light theme (with option to choose theme)
-- [x] ~~Add more background modes (Unsplash Source)~~
 - [ ] Add location-based weather
-- [x] ~~Fix compatibility with older Safari/iOS/WebKit/browser versions~~ (I went as much as possible without major rewriting)
-- [x] ~~Fix favicon in (some) browsers~~ (I tried)
 - [ ] Add an easter egg?!
+- [x] ~~Adjust media queries for optimal tablet layout~~
+- [x] ~~Add more background modes (Unsplash Source)~~
+- [x] ~~Fix compatibility with older Safari/iOS/WebKit/browser versions~~  
+(I went as much as possible without major rewriting)
+- [x] ~~Fix favicon in (some) browsers~~ (I tried)
 
 # Feel free to contribute however you can!
