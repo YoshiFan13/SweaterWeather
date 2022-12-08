@@ -62,6 +62,10 @@ html#legacyMac body {
     font-family: 'Helvetica', 'Roboto', 'Open Sans', 'Segoe UI', 'Helvetica Neue', sans-serif;
 }
 
+a {
+    color: white;
+}
+
 /* Thank you Vincent!! https://stackoverflow.com/a/33057806 */
 body:before {
     content: "";

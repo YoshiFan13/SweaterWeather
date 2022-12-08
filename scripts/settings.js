@@ -9,6 +9,8 @@ $(document).ready(function(){
     $('input:radio[name="background"]').filter(`[value="${localStorage.getItem('bgMode')}"]`).attr('checked', true);
     $('input#unsplash').val(localStorage.getItem('unsplash'));
     $('input[type=url]').val(localStorage.getItem('imageURL'));
+    if(localStorage.getItem('blur') == "on") $('input:checkbox[name="blur"]').attr('checked', true);
+    $('input[name=blurAmount]').val(localStorage.getItem('blurAmount'));
     $('input[name=overlay]').val(localStorage.getItem('overlay'));
     $('input[name=width]').val(localStorage.getItem('width'));
     $('input[name=height]').val(localStorage.getItem('height'));
@@ -26,6 +28,8 @@ $('form').on('submit', function(event) {
     let unsplash = $('input#unsplash').val();
     let api = $('input#api').val();
     let imageURL = $('input[type=url]').val();
+    let blur = $('input[name=blur]:checked').val() || null;
+    let blurAmount = $('input[name=blurAmount]').val();
     let overlay = $('input[name=overlay]').val();
     let width = $('input[name=width]').val() || Math.floor(window.screen.width * window.devicePixelRatio);
     let height = $('input[name=height]').val() || Math.floor(window.screen.height * window.devicePixelRatio);
@@ -36,6 +40,7 @@ $('form').on('submit', function(event) {
     let anyErrors = false;
     if(!api && !localStorage.getItem('api').length) {errors += "API key missing!\n"; anyErrors = true;}
     if(!loc && !localStorage.getItem('api').length) {errors += "Location is missing!\n"; anyErrors = true;}
+    if(blurAmount < 1 && blur == "on") {errors += "Invalid value for background blur amount.\n"; anyErrors = true;}
     if(overlay < 0 || overlay > 95) {errors += "Invalid value for overlay opacity. Input range: 0 - 95%\n"; anyErrors = true;}
     if(bgMode === "image" && !$('input[type=url]').val()) {errors += "No image URL was set. Enter a URL in the field or choose another option."; anyErrors = true;}
     if(["user", "userlikes", "collection", "search", "searchfeatured"].indexOf(bgMode) > -1 && !$('input#unsplash').val()) 
@@ -50,6 +55,8 @@ $('form').on('submit', function(event) {
     localStorage.setItem('extendHour', extendHour);
     localStorage.setItem('bgMode', bgMode);
     localStorage.setItem('unsplash', unsplash);
+    localStorage.setItem('blur', blur);
+    localStorage.setItem('blurAmount', blurAmount);
     localStorage.setItem('overlay', overlay);
     localStorage.setItem('width', width);
     localStorage.setItem('height', height);

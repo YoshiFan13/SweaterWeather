@@ -123,8 +123,13 @@
                 <button type="button" id="clearSaved" onclick="clearSavedImage()">Clear encoded image</button>
                 <br><br>
 
+                <label class="container check" for="blur">Blur background
+                <input type="checkbox" id="blur" name="blur">
+                <span class="checkmark check"></span></label>
+                <label for="blurAmount">Background blur amount (pixels)</label><br>
+                <input type="number" pattern="[0-9]*" id="blurAmount" name="blurAmount" placeholder="Default value is 8 pixels">
                 <label for="overlay">Background overlay opacity (0 - 95%)</label><br>
-                <input type="number" pattern="[0-9]*" id="overlay" name="overlay">
+                <input type="number" pattern="[0-9]*" id="overlay" name="overlay" placeholder="Default value is 50%">
                 <br><br>
 
                 <label for="width">Unsplash image width</label><br>
@@ -133,7 +138,7 @@
                 <input type="number" pattern="[0-9]*" id="height" name="height" placeholder="Smaller images use less data">
                 <br><br>
 
-                <label for="api">OpenWeatherMap API key</label><br>
+                <label for="api">OpenWeatherMap API key <a href="https://home.openweathermap.org/users/sign_up" target="_blank">(Get one here)</a></label><br>
                 <input type="text" id="api" name="api" placeholder="openweathermap.org/api">
                 </form>
         </div>

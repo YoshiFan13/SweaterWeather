@@ -155,6 +155,7 @@ function factoryReset() {
     localStorage.setItem('units', 'metric');
     localStorage.setItem('bgMode', 'unsplash');
     localStorage.setItem('iconID', 800);
+    localStorage.setItem('blurAmount', '8');
     localStorage.setItem('overlay', '50');
     localStorage.setItem('width', Math.floor(window.screen.width * window.devicePixelRatio));
     localStorage.setItem('height', Math.floor(window.screen.height * window.devicePixelRatio));
@@ -166,3 +167,7 @@ function isSorbet() {
 }
 
 if(/(X 10[._][4-9])|(PPC Mac OS X 10_11)/.test(navigator.userAgent) || isSorbet()) document.documentElement.setAttribute("id","legacyMac");
+
+if(localStorage.getItem('blur') == "on")
+// Based on https://stackoverflow.com/a/10061479
+$('head').append(`<style>body:before{filter:blur(${localStorage.getItem('blurAmount')}px); -webkit-filter:blur(${localStorage.getItem('blurAmount')}px);}</style>`);
